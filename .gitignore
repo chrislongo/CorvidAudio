@@ -13,3 +13,12 @@ build/
 
 # Claude Code
 .claude/
+CLAUDE.md
+
+# Internal docs
+**/docs/DESIGN.md
+**/docs/REQUIREMENTS.md
+**/docs/IDEA.md
+**/docs/TODO.md
+**/CHANGELOG.md
+**/mocks/
