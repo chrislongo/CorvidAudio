@@ -1,0 +1,15 @@
+# Build
+build/
+
+# macOS
+.DS_Store
+._*
+
+# IDE
+.vscode/
+.idea/
+*.xcodeproj/
+*.xcworkspace/
+
+# Claude Code
+.claude/
