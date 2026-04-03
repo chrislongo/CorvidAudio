@@ -113,7 +113,7 @@ cmake --build build --config Release --target LocBox     # Loc-Box
 ### Validate
 
 ```bash
-auval -v aumu Twop Cvda   # 2-OP (instrument)
+auval -v aumu TWOP CVDA   # 2-OP (instrument)
 auval -v aufx D308 CVDA   # Dist308
 auval -v aufx LIFE CVDA   # Life
 auval -v aufx LBOX CVDA   # Loc-Box

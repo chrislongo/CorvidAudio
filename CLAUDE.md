@@ -35,7 +35,7 @@ JUCE and eurorack must be siblings of this repo (`../JUCE`, `../eurorack`), or o
 
 No automated tests. `auval` is the primary correctness check:
 ```bash
-auval -v aumu Twop Cvda   # 2-OP (instrument)
+auval -v aumu TWOP CVDA   # 2-OP (instrument)
 auval -v aufx D308 CVDA   # Dist308
 auval -v aufx LIFE CVDA   # Life
 auval -v aufx LBOX CVDA   # Loc-Box
@@ -55,7 +55,7 @@ All plugins: CorvidAudio manufacturer, AU + VST3 + Standalone formats, macOS 11.
 ## Repo structure
 
 ```
-corvid-audio/
+CorvidAudio/
 ├── CMakeLists.txt              # Top-level: loads JUCE, adds all plugins
 ├── shared/
 │   ├── CMakeLists.txt          # INTERFACE library (header-only)

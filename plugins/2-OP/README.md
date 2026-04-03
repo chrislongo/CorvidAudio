@@ -93,7 +93,7 @@ cmake --build build --config Release
 cp -R build/TwoOpFM_artefacts/Release/AU/2-OP.component \
       ~/Library/Audio/Plug-Ins/Components/
 codesign --force --sign - ~/Library/Audio/Plug-Ins/Components/2-OP.component
-auval -v aumu Twop Cvda
+auval -v aumu TWOP CVDA
 
 # VST3
 cp -R build/TwoOpFM_artefacts/Release/VST3/2-OP.vst3 \
@@ -115,7 +115,7 @@ The env vars default to sibling directories (`../JUCE`, `../eurorack`) if not se
 
 | Format | AU Type | Manufacturer | Plugin Code | Bundle ID |
 |--------|---------|--------------|-------------|-----------|
-| AU Instrument | `aumu` | `Cvda` | `Twop` | `com.CorvidAudio.TwoOpFM` |
+| AU Instrument | `aumu` | `CVDA` | `TWOP` | `com.CorvidAudio.TwoOpFM` |
 | VST3 | — | — | — | `com.CorvidAudio.TwoOpFM` |
 
 ## License

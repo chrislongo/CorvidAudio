@@ -2,8 +2,8 @@
 
 juce_add_plugin(TwoOpFM
     COMPANY_NAME            "CorvidAudio"
-    PLUGIN_MANUFACTURER_CODE Cvda
-    PLUGIN_CODE             Twop
+    PLUGIN_MANUFACTURER_CODE CVDA
+    PLUGIN_CODE             TWOP
     FORMATS                 AU VST3 Standalone
     IS_SYNTH                TRUE
     NEEDS_MIDI_INPUT        TRUE
