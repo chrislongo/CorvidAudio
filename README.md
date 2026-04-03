@@ -1,12 +1,8 @@
-<p align="center">
-  <img src="docs/corvid.png" width="128" alt="Corvid Audio"/>
-</p>
+<img src="docs/corvid.png" width="64" alt="Corvid Audio"/>
 
-<h1 align="center">Corvid Audio</h1>
+<h1>Corvid Audio</h1>
 
-<p align="center">
-  Audio plugins for music production — AU, VST3, and Standalone on macOS.
-</p>
+Audio plugins for music production — AU, VST3, and Standalone on macOS.
 
 ---
 
