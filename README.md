@@ -100,7 +100,7 @@ cmake --build build --config Release
 ### Build a single plugin
 
 ```bash
-cmake --build build --config Release --target TwoOpFM   # 2-OP
+cmake --build build --config Release --target TwoOpFM    # 2-OP
 cmake --build build --config Release --target Dist308    # Dist308
 cmake --build build --config Release --target Life       # Life
 cmake --build build --config Release --target LocBox     # Loc-Box
