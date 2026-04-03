@@ -172,58 +172,41 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     const float sat   = apvts.getRawParameterValue ("saturation")->load();
     const float xfmr  = apvts.getRawParameterValue ("transformer")->load();
 
-    const float targetNoise = noise / 100.0f;
-    const float targetThd   = (thd / 100.0f) * 0.5f;
-    const float targetSat   = 1.0f + (sat / 100.0f) * 3.0f;
-    const float targetXfmr  = xfmr / 100.0f;
+    const float baseNoise = noise / 100.0f;
+    const float baseThd   = (thd / 100.0f) * 0.5f;
+    const float baseSat   = 1.0f + (sat / 100.0f) * 3.0f;
+    const float baseXfmr  = xfmr / 100.0f;
 
     const int numChannels = buffer.getNumChannels();
     const int numSamples  = buffer.getNumSamples();
 
-    // Wide mode: continuous mean-reverting random walk per channel
-    if (wideOn && numChannels >= 2)
-    {
-        constexpr float drift  = 0.002f;  // random nudge per block
-        constexpr float revert = 0.005f;  // pull toward 1.0
-
-        auto walk = [&] (float& var, float range) {
-            var += (rng.nextFloat() * 2.0f - 1.0f) * drift;
-            var += (1.0f - var) * revert;
-            var = juce::jlimit (1.0f - range, 1.0f + range, var);
-        };
-
-        for (int c = 0; c < 2; ++c)
-        {
-            walk (wideNoiseVar[c], 0.05f);
-            walk (wideThdVar[c],   0.04f);
-            walk (wideSatVar[c],   0.03f);
-            walk (wideXfmrVar[c],  0.03f);
-        }
-    }
-    else
-    {
-        // Smooth convergence back to unity
-        constexpr float revert = 0.02f;
-        for (int c = 0; c < 2; ++c)
-        {
-            wideNoiseVar[c] += (1.0f - wideNoiseVar[c]) * revert;
-            wideThdVar[c]   += (1.0f - wideThdVar[c])   * revert;
-            wideSatVar[c]   += (1.0f - wideSatVar[c])    * revert;
-            wideXfmrVar[c]  += (1.0f - wideXfmrVar[c])  * revert;
-        }
-    }
+    // Wide mode: R channel (ch 1) gets fixed component-tolerance offsets.
+    // L channel always uses nominal values. When Wide is off, both are nominal.
+    const bool applyWide = wideOn && numChannels >= 2;
 
     // Noise sample channel count (may be mono or stereo)
     const int noiseCh = noiseSample.getNumChannels();
+
+    // Per-channel harmonic ratios: L uses 70/30, R uses 62/38 when wide
+    const float h2Ratio[2] = { 0.70f, applyWide ? kWideThdH2Ratio : 0.70f };
+    const float h3Ratio[2] = { 0.30f, applyWide ? (1.0f - kWideThdH2Ratio) : 0.30f };
 
     for (int ch = 0; ch < numChannels && ch < 2; ++ch)
     {
         const auto chi = static_cast<size_t> (ch);
 
-        noiseLevelSmoothed[chi].setTargetValue (targetNoise * wideNoiseVar[ch]);
-        thdLevelSmoothed[chi].setTargetValue (targetThd * wideThdVar[ch]);
-        satLevelSmoothed[chi].setTargetValue (targetSat * wideSatVar[ch]);
-        xfmrDriveSmoothed[chi].setTargetValue (targetXfmr * wideXfmrVar[ch]);
+        // L = nominal, R = tolerance-offset when wide
+        const bool isOffsetCh = applyWide && ch == 1;
+
+        const float chNoise = baseNoise * (isOffsetCh ? kWideNoiseScale : 1.0f);
+        const float chThd   = baseThd   * (isOffsetCh ? kWideThdScale   : 1.0f);
+        const float chSat   = baseSat   * (isOffsetCh ? kWideSatScale   : 1.0f);
+        const float chXfmr  = baseXfmr  * (isOffsetCh ? kWideXfmrScale  : 1.0f);
+
+        noiseLevelSmoothed[chi].setTargetValue (chNoise);
+        thdLevelSmoothed[chi].setTargetValue (chThd);
+        satLevelSmoothed[chi].setTargetValue (chSat);
+        xfmrDriveSmoothed[chi].setTargetValue (chXfmr);
 
         float* data = buffer.getWritePointer (ch);
 
@@ -231,6 +214,10 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         const float* noiseData = (noiseSampleLen > 0)
             ? noiseSample.getReadPointer (juce::jmin (ch, noiseCh - 1))
             : nullptr;
+
+        const float chH2 = h2Ratio[ch < 2 ? ch : 0];
+        const float chH3 = h3Ratio[ch < 2 ? ch : 0];
+        const float chAsymmetry = isOffsetCh ? kWideSatAsymmetry : 0.0f;
 
         for (int i = 0; i < numSamples; ++i)
         {
@@ -251,21 +238,24 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             }
 
             // --- 2. Harmonics (THD) ---
+            // L: 70% 2nd / 30% 3rd.  R (wide): 62% 2nd / 38% 3rd.
             if (tl > 1.0e-7f)
             {
                 const float h2 = x * x * (x >= 0.0f ? 1.0f : -1.0f);
                 const float h3 = x * x * x;
-                x += tl * (0.7f * h2 + 0.3f * h3);
+                x += tl * (chH2 * h2 + chH3 * h3);
             }
 
             // --- 3. Tube saturation ---
+            // R (wide): slightly different bias point + extra asymmetry
             if (sl > 1.001f)
             {
                 x = std::tanh (x * sl) / sl;
-                x += 0.02f * (sl - 1.0f) * x * x;
+                x += (0.02f + chAsymmetry) * (sl - 1.0f) * x * x;
             }
 
             // --- 4. SSL-style console transformer ---
+            // R (wide): slightly higher gain staging
             if (drive > 1.0e-5f)
             {
                 // Gain staging

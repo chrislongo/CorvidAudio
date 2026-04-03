@@ -58,12 +58,15 @@ private:
     std::array<juce::SmoothedValue<float>, 2> satLevelSmoothed;
     std::array<juce::SmoothedValue<float>, 2> xfmrDriveSmoothed;
 
-    // Random for wide mode per-channel variation (mean-reverting random walk)
-    juce::Random rng;
-    float wideNoiseVar[2]  { 1.0f, 1.0f };
-    float wideThdVar[2]    { 1.0f, 1.0f };
-    float wideSatVar[2]    { 1.0f, 1.0f };
-    float wideXfmrVar[2]   { 1.0f, 1.0f };
+    // Wide mode: fixed per-channel component tolerance offsets.
+    // Models two slightly different analog channel strips.
+    // L = reference channel, R = offset channel.
+    static constexpr float kWideNoiseScale   = 1.03f;   // R preamp noise floor +3%
+    static constexpr float kWideThdScale     = 1.04f;   // R harmonic level +4%
+    static constexpr float kWideThdH2Ratio   = 0.62f;   // R: 62/38 2nd/3rd (vs L: 70/30)
+    static constexpr float kWideSatScale     = 1.025f;  // R tube bias +2.5%
+    static constexpr float kWideSatAsymmetry = 0.035f;  // R extra even-harmonic asymmetry
+    static constexpr float kWideXfmrScale    = 1.03f;   // R transformer gain +3%
 
     float piOverSr = 0.0f;
 
