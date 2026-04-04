@@ -55,7 +55,7 @@ PLUGIN_DESC[Dist308]="ProCo Rat-inspired distortion"
 
 PLUGIN_TARGET[Life]="Life"
 PLUGIN_ARTEFACT[Life]="Life"
-PLUGIN_VERSION[Life]="0.4.2"
+PLUGIN_VERSION[Life]="0.5.0"
 PLUGIN_DESC[Life]="Analog character and warmth"
 
 PLUGIN_TARGET[Loc-Box]="LocBox"

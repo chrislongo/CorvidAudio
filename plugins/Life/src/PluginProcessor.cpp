@@ -255,33 +255,29 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             }
 
             // --- 4. SSL-style console transformer ---
-            // R (wide): slightly higher gain staging
-            if (drive > 1.0e-5f)
+            // Always run the full chain to keep filter states warm.
+            // Blend dry->wet by drive so the DC blocker is never suddenly applied.
             {
-                // Gain staging
                 const float g = 1.0f + drive * 2.0f;
-                x *= g;
+                float wet = x * g;
 
                 // Asymmetric saturation (even harmonic generation)
-                x += drive * 0.2f * x * std::abs (x);
+                wet += drive * 0.2f * wet * std::abs (wet);
 
-                // Soft saturation (transformer core), normalized by g for unity small-signal gain
-                x = std::tanh (x) / g;
+                // Soft saturation, normalized for unity small-signal gain
+                wet = std::tanh (wet) / g;
 
                 // DC blocking HPF (~30 Hz)
-                xfmrDcState[chi] += xfmrDcCoeff * (x - xfmrDcState[chi]);
-                x -= xfmrDcState[chi];
+                xfmrDcState[chi] += xfmrDcCoeff * (wet - xfmrDcState[chi]);
+                wet -= xfmrDcState[chi];
 
                 // HF rolloff (transformer inductance, increases with drive)
-                xfmrLpfState[chi] += xfmrLpfCoeff * (x - xfmrLpfState[chi]);
+                xfmrLpfState[chi] += xfmrLpfCoeff * (wet - xfmrLpfState[chi]);
                 const float lpfMix = drive * 0.3f;
-                x = x * (1.0f - lpfMix) + xfmrLpfState[chi] * lpfMix;
-            }
-            else
-            {
-                // Keep filter states tracking to avoid clicks when engaging
-                xfmrDcState[chi]  += xfmrDcCoeff  * (x - xfmrDcState[chi]);
-                xfmrLpfState[chi] += xfmrLpfCoeff * (x - xfmrLpfState[chi]);
+                wet = wet * (1.0f - lpfMix) + xfmrLpfState[chi] * lpfMix;
+
+                // At drive=0: pure dry (x). At drive=1: pure transformer (wet).
+                x += drive * (wet - x);
             }
 
             data[i] = x;

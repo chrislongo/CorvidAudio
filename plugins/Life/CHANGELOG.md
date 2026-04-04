@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.0
+
+- Fix Iron pop on engagement: transformer chain always runs with dry/wet blend (drive=0 is 100% dry), eliminating the DC blocker step-discontinuity that caused the click
+
 ## v0.4.2
 
 - Fix Wide mode level imbalance: saturation offset no longer engages at zero
