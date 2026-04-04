@@ -58,12 +58,17 @@ PLUGIN_ARTEFACT[Life]="Life"
 PLUGIN_VERSION[Life]="0.5.0"
 PLUGIN_DESC[Life]="Analog character and warmth"
 
+PLUGIN_TARGET[Headroom]="Headroom"
+PLUGIN_ARTEFACT[Headroom]="Headroom"
+PLUGIN_VERSION[Headroom]="1.0.0"
+PLUGIN_DESC[Headroom]="Hard clipper with threshold control"
+
 PLUGIN_TARGET[Loc-Box]="LocBox"
 PLUGIN_ARTEFACT[Loc-Box]="LocBox"
 PLUGIN_VERSION[Loc-Box]="0.3.1"
 PLUGIN_DESC[Loc-Box]="Shure Level Loc brickwall limiter emulation"
 
-ALL_PLUGINS=("2-OP" "Dist308" "Life" "Loc-Box")
+ALL_PLUGINS=("2-OP" "Dist308" "Headroom" "Life" "Loc-Box")
 
 # ------------------------------------------------------------------
 # Helpers
@@ -250,6 +255,7 @@ Corvid Audio Suite v${SUITE_VERSION}
 Includes:
   2-OP      — 2-operator FM synthesizer
   Dist308   — ProCo Rat-inspired distortion
+  Headroom  — Hard clipper with threshold control
   Life      — Analog character and warmth
   Loc-Box   — Shure Level Loc brickwall limiter emulation
 

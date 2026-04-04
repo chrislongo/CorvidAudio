@@ -14,5 +14,6 @@ add_subdirectory(shared)
 # -- Plugins -------------------------------------------------------------------
 add_subdirectory(plugins/2-OP)
 add_subdirectory(plugins/Dist308)
+add_subdirectory(plugins/Headroom)
 add_subdirectory(plugins/Life)
 add_subdirectory(plugins/Loc-Box)
