@@ -4,6 +4,7 @@ juce_add_plugin(Life
     COMPANY_NAME             "CorvidAudio"
     PLUGIN_MANUFACTURER_CODE CVDA
     PLUGIN_CODE              LIFE
+    PLUGIN_VERSION           "0.4.2"
     FORMATS                  AU VST3 Standalone
     PRODUCT_NAME             "Life"
     DESCRIPTION              "Analog life and character for digital tracks"

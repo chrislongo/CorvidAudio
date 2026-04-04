@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.2
+
+- Fix Wide mode level imbalance: saturation offset no longer engages at zero
+- Fix Iron knob snap-on: normalize transformer output by drive gain (not tanh(g)) for smooth engagement from zero
+
 ## v0.4.1
 
 - Use 15s mono noise sample. 

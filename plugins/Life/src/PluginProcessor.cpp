@@ -174,7 +174,6 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
     const float baseNoise = noise / 100.0f;
     const float baseThd   = (thd / 100.0f) * 0.5f;
-    const float baseSat   = 1.0f + (sat / 100.0f) * 3.0f;
     const float baseXfmr  = xfmr / 100.0f;
 
     const int numChannels = buffer.getNumChannels();
@@ -200,7 +199,8 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
         const float chNoise = baseNoise * (isOffsetCh ? kWideNoiseScale : 1.0f);
         const float chThd   = baseThd   * (isOffsetCh ? kWideThdScale   : 1.0f);
-        const float chSat   = baseSat   * (isOffsetCh ? kWideSatScale   : 1.0f);
+        // Only scale the variable drive portion so sat=0 stays at exactly 1.0 on both channels
+        const float chSat   = 1.0f + (sat / 100.0f) * 3.0f * (isOffsetCh ? kWideSatScale : 1.0f);
         const float chXfmr  = baseXfmr  * (isOffsetCh ? kWideXfmrScale  : 1.0f);
 
         noiseLevelSmoothed[chi].setTargetValue (chNoise);
@@ -265,8 +265,8 @@ void LifeAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                 // Asymmetric saturation (even harmonic generation)
                 x += drive * 0.2f * x * std::abs (x);
 
-                // Soft saturation (transformer core)
-                x = std::tanh (x) / std::tanh (g);
+                // Soft saturation (transformer core), normalized by g for unity small-signal gain
+                x = std::tanh (x) / g;
 
                 // DC blocking HPF (~30 Hz)
                 xfmrDcState[chi] += xfmrDcCoeff * (x - xfmrDcState[chi]);
