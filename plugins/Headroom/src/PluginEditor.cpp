@@ -4,14 +4,23 @@ HeadroomAudioProcessorEditor::HeadroomAudioProcessorEditor (HeadroomAudioProcess
     : AudioProcessorEditor (&p), processor (p)
 {
     addAndMakeVisible (thresholdKnob);
-    thresholdKnob.setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
-    thresholdKnob.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
+    thresholdKnob.setSliderStyle (juce::Slider::RotaryVerticalDrag);
+    thresholdKnob.setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
+    thresholdKnob.setRotaryParameters (juce::MathConstants<float>::pi * 1.25f,
+                                        juce::MathConstants<float>::pi * 2.75f,
+                                        true);
     thresholdKnob.setLookAndFeel (&knobLAF);
 
     thresholdAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (
         processor.apvts, "threshold", thresholdKnob);
 
-    setSize (200, 210);
+    thresholdLabel.setText ("Threshold", juce::dontSendNotification);
+    thresholdLabel.setFont (juce::Font (juce::FontOptions().withHeight (12.0f).withStyle ("Bold")));
+    thresholdLabel.setColour (juce::Label::textColourId, juce::Colour (0xff111111));
+    thresholdLabel.setJustificationType (juce::Justification::centred);
+    addAndMakeVisible (thresholdLabel);
+
+    setSize (200, 190);
     startTimerHz (30);
 }
 
@@ -25,40 +34,21 @@ void HeadroomAudioProcessorEditor::paint (juce::Graphics& g)
 {
     corvid::paintPanelBackground (g, getWidth(), getHeight());
 
-    const auto labelColour = juce::Colour (0x60, 0x60, 0x60);
+    // Plugin name — same treatment as other Corvid plugins
+    g.setColour (juce::Colour (0xff111111));
+    g.setFont (juce::Font (juce::FontOptions().withHeight (20.0f).withStyle ("Bold")));
+    g.drawText ("Headroom", 12, 4, 150, 24, juce::Justification::bottomLeft);
 
-    // Plugin name
-    g.setFont (juce::Font (juce::FontOptions().withHeight (13.0f).withStyle ("Bold")));
-    g.setColour (labelColour);
-    g.drawText ("HEADROOM", 0, 8, getWidth(), 20, juce::Justification::centred);
-
-    // Knob label
-    g.setFont (juce::Font (juce::FontOptions().withHeight (11.0f).withStyle ("Bold")));
-    g.drawText ("THRESHOLD", 0, 158, getWidth(), 18, juce::Justification::centred);
-
-    // Clip LED
+    // Clip LED — flat fill, colour interpolated for smooth fade
     constexpr float kLedDiam = 10.0f;
     const float ledX = (getWidth() - kLedDiam) * 0.5f;
-    constexpr float kLedY = 185.0f;
+    constexpr float kLedY = 168.0f;
     const juce::Rectangle<float> led (ledX, kLedY, kLedDiam, kLedDiam);
 
-    if (ledOn)
-    {
-        // Outer glow
-        g.setColour (juce::Colour (255, 40, 40).withAlpha (0.25f));
-        g.fillEllipse (led.expanded (4.0f));
-        // Body
-        g.setColour (juce::Colour (255, 40, 40));
-        g.fillEllipse (led);
-        // Specular highlight
-        g.setColour (juce::Colours::white.withAlpha (0.45f));
-        g.fillEllipse (led.reduced (3.0f).translated (0.0f, -0.8f));
-    }
-    else
-    {
-        g.setColour (juce::Colour (55, 12, 12));
-        g.fillEllipse (led);
-    }
+    const auto offColour = juce::Colour (55, 12, 12);
+    const auto onColour  = juce::Colour (220, 30, 30);
+    g.setColour (offColour.interpolatedWith (onColour, ledAlpha));
+    g.fillEllipse (led);
 
     g.setColour (juce::Colour (20, 6, 6));
     g.drawEllipse (led, 1.0f);
@@ -66,7 +56,13 @@ void HeadroomAudioProcessorEditor::paint (juce::Graphics& g)
 
 void HeadroomAudioProcessorEditor::resized()
 {
-    thresholdKnob.setBounds (40, 30, 120, 120);
+    constexpr int kKnobSize = 96;
+    constexpr int kGap      = 4;
+    constexpr int kLabelH   = 15;
+
+    const int knobX = (getWidth() - kKnobSize) / 2;
+    thresholdKnob.setBounds (knobX, 36, kKnobSize, kKnobSize);
+    thresholdLabel.setBounds (0, 36 + kKnobSize + kGap, getWidth(), kLabelH);
 }
 
 void HeadroomAudioProcessorEditor::timerCallback()
@@ -74,13 +70,20 @@ void HeadroomAudioProcessorEditor::timerCallback()
     if (processor.clipping.exchange (false, std::memory_order_relaxed))
         clipHoldTicks = 15;  // ~500 ms at 30 Hz
 
-    const bool newLed = (clipHoldTicks > 0);
+    const float target = (clipHoldTicks > 0) ? 1.0f : 0.0f;
     if (clipHoldTicks > 0)
         --clipHoldTicks;
 
-    if (newLed != ledOn)
+    const float newAlpha = ledAlpha + (target - ledAlpha) * 0.35f;
+
+    if (std::abs (newAlpha - ledAlpha) > 0.004f)
     {
-        ledOn = newLed;
+        ledAlpha = newAlpha;
+        repaint();
+    }
+    else if (ledAlpha != target)
+    {
+        ledAlpha = target;
         repaint();
     }
 }

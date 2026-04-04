@@ -20,11 +20,12 @@ private:
 
     corvid::BlackKnobLookAndFeel knobLAF;
     juce::Slider thresholdKnob;
+    juce::Label  thresholdLabel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> thresholdAttachment;
 
-    int  clipHoldTicks = 0;
-    bool ledOn         = false;
+    int   clipHoldTicks = 0;
+    float ledAlpha      = 0.0f;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HeadroomAudioProcessorEditor)
 };
