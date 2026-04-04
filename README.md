@@ -115,6 +115,7 @@ cmake --build build --config Release
 ```bash
 cmake --build build --config Release --target TwoOpFM    # 2-OP
 cmake --build build --config Release --target Dist308    # Dist308
+cmake --build build --config Release --target Headroom   # Headroom
 cmake --build build --config Release --target Life       # Life
 cmake --build build --config Release --target LocBox     # Loc-Box
 ```
@@ -124,6 +125,7 @@ cmake --build build --config Release --target LocBox     # Loc-Box
 ```bash
 auval -v aumu TWOP CVDA   # 2-OP (instrument)
 auval -v aufx D308 CVDA   # Dist308
+auval -v aufx HDRM CVDA   # Headroom
 auval -v aufx LIFE CVDA   # Life
 auval -v aufx LBOX CVDA   # Loc-Box
 ```
