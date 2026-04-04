@@ -1,4 +1,4 @@
-<img src="docs/corvid.png" width="64" alt="Corvid Audio"/>
+<img src="../../docs/corvid.png" width="64" alt="Corvid Audio"/>
 
 # 2-OP
 
