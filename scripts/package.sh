@@ -24,7 +24,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "${REPO_ROOT}"
 
 # ---- Suite version ----
-SUITE_VERSION="1.0.0"
+SUITE_VERSION="1.1.0"
 
 # ---- Signing identity ----
 SIGN_ID="Developer ID Application"
