@@ -42,6 +42,19 @@ A **ProCo RAT-inspired distortion**. Models the key stages of the classic RAT ci
 
 ---
 
+### Headroom
+
+<img src="plugins/Headroom/docs/headroom.png" width="200" alt="Headroom"/>
+
+A **hard clipper** with a single threshold control. Start at 100% for transparent passthrough, then pull back until the clip LED lights.
+
+| Parameter | Description |
+|-----------|-------------|
+| **Threshold** | Clip ceiling — 100% = full scale, pull back to reduce headroom |
+| **LED** | Lights red when the signal exceeds the threshold |
+
+---
+
 ### Life
 
 <img src="plugins/Life/docs/Life.png" width="400" alt="Life"/>
