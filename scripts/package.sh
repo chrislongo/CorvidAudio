@@ -60,7 +60,7 @@ PLUGIN_DESC[Life]="Analog character and warmth"
 
 PLUGIN_TARGET[Headroom]="Headroom"
 PLUGIN_ARTEFACT[Headroom]="Headroom"
-PLUGIN_VERSION[Headroom]="1.0.0"
+PLUGIN_VERSION[Headroom]="0.1.0"
 PLUGIN_DESC[Headroom]="Hard clipper with threshold control"
 
 PLUGIN_TARGET[Loc-Box]="LocBox"
