@@ -44,7 +44,7 @@ A **ProCo RAT-inspired distortion**. Models the key stages of the classic RAT ci
 
 ### Headroom
 
-<img src="plugins/Headroom/docs/headroom.png" width="200" alt="Headroom"/>
+<img src="plugins/Headroom/docs/Headroom.png" width="200" alt="Headroom"/>
 
 A **hard clipper** with a single threshold control. Start at 100% for transparent passthrough, then pull back until the clip LED lights.
 

@@ -2,7 +2,7 @@
 
 # Headroom
 
-![Headroom](docs/headroom.png)
+![Headroom](docs/Headroom.png)
 
 A **hard clipper** with a single threshold control. Start at 100% for transparent passthrough, then pull back until the clip LED lights — the signal is cut at exactly that ceiling with no added colour.
 
