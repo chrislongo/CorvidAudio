@@ -13,13 +13,13 @@ HeadroomAudioProcessor::createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
 
-    // 0–100 %, default 100 (no clipping). Skewed so mid-knob ≈ 70 % for useful resolution.
-    juce::NormalisableRange<float> threshRange (0.0f, 100.0f, 0.01f);
-    threshRange.setSkewForCentre (70.0f);
+    // -30 to 0 dBFS, default 0 (no clipping). Skewed so mid-knob ≈ -12 dBFS.
+    juce::NormalisableRange<float> threshRange (-30.0f, 0.0f, 0.1f);
+    threshRange.setSkewForCentre (-12.0f);
 
     layout.add (std::make_unique<juce::AudioParameterFloat> (
-        juce::ParameterID { "threshold", 1 }, "Threshold", threshRange, 100.0f,
-        juce::AudioParameterFloatAttributes().withLabel (" %")));
+        juce::ParameterID { "threshold", 1 }, "Threshold", threshRange, 0.0f,
+        juce::AudioParameterFloatAttributes().withLabel (" dB")));
 
     return layout;
 }
@@ -27,7 +27,7 @@ HeadroomAudioProcessor::createParameterLayout()
 void HeadroomAudioProcessor::prepareToPlay (double sampleRate, int)
 {
     thresholdSmoothed.reset (sampleRate, 0.02);
-    const float initThresh = apvts.getRawParameterValue ("threshold")->load() / 100.0f;
+    const float initThresh = juce::Decibels::decibelsToGain (apvts.getRawParameterValue ("threshold")->load());
     thresholdSmoothed.setCurrentAndTargetValue (initThresh);
 }
 
@@ -45,7 +45,7 @@ void HeadroomAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 {
     juce::ScopedNoDenormals noDenormals;
 
-    const float targetThresh = apvts.getRawParameterValue ("threshold")->load() / 100.0f;
+    const float targetThresh = juce::Decibels::decibelsToGain (apvts.getRawParameterValue ("threshold")->load());
     thresholdSmoothed.setTargetValue (targetThresh);
 
     const int numChannels = buffer.getNumChannels();

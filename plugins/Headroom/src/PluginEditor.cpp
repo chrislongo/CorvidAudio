@@ -74,7 +74,7 @@ void HeadroomAudioProcessorEditor::timerCallback()
     if (clipHoldTicks > 0)
         --clipHoldTicks;
 
-    const float newAlpha = ledAlpha + (target - ledAlpha) * 0.35f;
+    const float newAlpha = ledAlpha + (target - ledAlpha) * 0.55f;
 
     if (std::abs (newAlpha - ledAlpha) > 0.004f)
     {

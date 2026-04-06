@@ -4,7 +4,7 @@ juce_add_plugin(Headroom
     COMPANY_NAME             "CorvidAudio"
     PLUGIN_MANUFACTURER_CODE CVDA
     PLUGIN_CODE              HDRM
-    PLUGIN_VERSION           "0.1.0"
+    PLUGIN_VERSION           "0.2.0"
     FORMATS                  AU VST3 Standalone
     PRODUCT_NAME             "Headroom"
     DESCRIPTION              "Hard clipper with threshold control"
