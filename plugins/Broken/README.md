@@ -2,7 +2,7 @@
 
 # Broken
 
-A **dying battery fuzz** inspired by the fuzz face bias pot. Turn Bias down past 9 o'clock and the circuit starves — the transistor oscillates between cutoff and saturation on every audio cycle, producing the sputtering velcro texture of a pedal running on a nearly-dead battery.
+A **dying battery fuzz** inspired by the fuzz face bias pot. Turn Bias down past 9 o'clock and the circuit starves: the transistor oscillates between cutoff and saturation on every audio cycle, producing the sputtering velcro texture of a pedal running on a nearly-dead battery.
 
 ## Controls
 
@@ -18,7 +18,7 @@ A **dying battery fuzz** inspired by the fuzz face bias pot. Turn Bias down past
 Input → Drive → Asymmetric Dead-Zone Clipper → DC Block → Output Trim
 ```
 
-The clipper models a transistor near cutoff: the positive side snaps hard from silence to saturation at the threshold boundary; the negative side backs out of saturation more gently. The dead zone between both thresholds widens as Bias drops — audio-rate oscillation through this boundary is the velcro texture.
+The clipper models a transistor near cutoff: the positive side snaps hard from silence to saturation at the threshold boundary; the negative side backs out of saturation more gently. The dead zone between both thresholds widens as Bias drops, and audio-rate oscillation through this boundary is the velcro texture.
 
 ## Building
 
@@ -64,4 +64,4 @@ auval -v aufx BRKN CVDA
 
 ## License
 
-GPL-3.0 — see [LICENSE](LICENSE).
+GPL-3.0, see [LICENSE](LICENSE).

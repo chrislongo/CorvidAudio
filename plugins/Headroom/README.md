@@ -4,14 +4,14 @@
 
 ![Headroom](docs/Headroom.png)
 
-A **hard clipper** with a single threshold control. Start at 100% for transparent passthrough, then pull back until the clip LED lights — the signal is cut at exactly that ceiling with no added colour.
+A **hard clipper** with a single threshold control. Start at 100% for transparent passthrough, then pull back until the clip LED lights; the signal is cut at exactly that ceiling with no added colour.
 
 ## Controls
 
 | Control | Range | Description |
 |---------|-------|-------------|
 | **Threshold** | 0 – 100% | Clip ceiling. 100% = full scale (no clipping). Pull back to reduce headroom and introduce hard clipping. |
-| **LED** | — | Lights red when the signal exceeds the threshold. Stays lit for ~500 ms after the last clipped sample. |
+| **LED** | - | Lights red when the signal exceeds the threshold. Stays lit for ~500 ms after the last clipped sample. |
 
 ## Signal Chain
 
@@ -63,4 +63,4 @@ auval -v aufx HDRM CVDA
 
 ## License
 
-GPL-3.0 — see [LICENSE](LICENSE).
+GPL-3.0, see [LICENSE](LICENSE).

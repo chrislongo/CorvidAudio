@@ -12,9 +12,9 @@ The signal chain models the key stages of the classic RAT circuit: a high-pass f
 
 | Parameter | Range | Description |
 |-----------|-------|-------------|
-| Distortion | 0–100 | Drive amount — exponential gain curve (47×–1047×); pre-clip LPF tracks gain to model LM308 GBW rolloff |
-| Filter | 0–100 | Tone control — CCW = dark (475 Hz), CW = bright (22 kHz) |
-| Volume | 0–100 | Output level — quadratic taper |
+| Distortion | 0–100 | Drive amount: exponential gain curve (47×–1047×); pre-clip LPF tracks gain to model LM308 GBW rolloff |
+| Filter | 0–100 | Tone control: CCW = dark (475 Hz), CW = bright (22 kHz) |
+| Volume | 0–100 | Output level: quadratic taper |
 
 Hold Shift while dragging any knob for fine-tune resolution.
 
@@ -79,12 +79,12 @@ The `scripts/package.sh` script builds, code-signs, creates a DMG, and notarizes
 | Format | AU Type | Manufacturer | Plugin Code | Bundle ID |
 |--------|---------|--------------|-------------|-----------|
 | AU Effect | `aufx` | `CVDA` | `D308` | `com.CorvidAudio.Dist308` |
-| VST3 | — | — | — | `com.CorvidAudio.Dist308` |
+| VST3 | - | - | - | `com.CorvidAudio.Dist308` |
 
 ## License
 
 Copyright 2026 Corvid Audio
 
-This project is licensed under the **GNU General Public License v3.0** — see [LICENSE](LICENSE) for the full text.
+This project is licensed under the **GNU General Public License v3.0**, see [LICENSE](LICENSE) for the full text.
 
 JUCE is used under its [GPL-3.0 open-source licence](https://github.com/juce-framework/JUCE/blob/master/LICENSE.md).

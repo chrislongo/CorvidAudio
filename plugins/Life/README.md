@@ -6,7 +6,7 @@
 
 An analog character plugin that adds **life and warmth** to digital tracks. Built as an AU/VST3 audio plugin with [JUCE](https://juce.com/).
 
-Life models the subtle imperfections of analog hardware — transformer coloration, console noise floor, harmonic distortion, and tube saturation — giving sterile digital mixes the depth and movement of real gear.
+Life models the subtle imperfections of analog hardware: transformer coloration, console noise floor, harmonic distortion, and tube saturation, giving sterile digital mixes the depth and movement of real gear.
 
 ## Signal Chain
 

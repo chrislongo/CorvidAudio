@@ -2,7 +2,7 @@
 
 <h1>Corvid Audio</h1>
 
-Audio plugins for music production — AU, VST3, and Standalone on macOS.
+Audio plugins for music production. AU, VST3, and Standalone on macOS.
 
 ---
 
@@ -12,7 +12,7 @@ Audio plugins for music production — AU, VST3, and Standalone on macOS.
 
 <img src="plugins/2-OP/docs/2-op.png" width="400" alt="2-OP"/>
 
-A monophonic **2-operator FM synthesizer**. The DSP engine is the `FMEngine` from [Mutable Instruments Plaits](https://github.com/pichenettes/eurorack), adapted for standard sample rates. The amplitude/filter stage is a Plaits-style LPG (low-pass gate) — a vactrol simulation feeding a combined SVF lowpass + VCA, giving the characteristic bloom and soft roll-off of a Buchla-style circuit.
+A monophonic **2-operator FM synthesizer**. The DSP engine is the `FMEngine` from [Mutable Instruments Plaits](https://github.com/pichenettes/eurorack), adapted for standard sample rates. The amplitude/filter stage is a Plaits-style LPG (low-pass gate): a vactrol simulation feeding a combined SVF lowpass + VCA, giving the characteristic bloom and soft roll-off of a Buchla-style circuit.
 
 | Parameter | Description |
 |-----------|-------------|
@@ -36,9 +36,9 @@ A **ProCo RAT-inspired distortion**. Models the key stages of the classic RAT ci
 
 | Parameter | Description |
 |-----------|-------------|
-| **Distortion** | Drive amount — exponential gain curve with LM308 GBW rolloff |
-| **Filter** | Tone control — CCW = dark (475 Hz), CW = bright (22 kHz) |
-| **Volume** | Output level — quadratic taper |
+| **Distortion** | Drive amount: exponential gain curve with LM308 GBW rolloff |
+| **Filter** | Tone control: CCW = dark (475 Hz), CW = bright (22 kHz) |
+| **Volume** | Output level: quadratic taper |
 
 ---
 
@@ -50,7 +50,7 @@ A **hard clipper** with a single threshold control. Start at 100% for transparen
 
 | Parameter | Description |
 |-----------|-------------|
-| **Threshold** | Clip ceiling — 100% = full scale, pull back to reduce headroom |
+| **Threshold** | Clip ceiling: 100% = full scale, pull back to reduce headroom |
 | **LED** | Lights red when the signal exceeds the threshold |
 
 ---
@@ -59,14 +59,14 @@ A **hard clipper** with a single threshold control. Start at 100% for transparen
 
 <img src="plugins/Life/docs/Life.png" width="400" alt="Life"/>
 
-**Analog character and warmth** for digital tracks. Models the subtle imperfections of analog hardware — transformer coloration, console noise floor, harmonic distortion, and tube saturation — giving sterile digital mixes the depth and movement of real gear.
+**Analog character and warmth** for digital tracks. Models the subtle imperfections of analog hardware: transformer coloration, console noise floor, harmonic distortion, and tube saturation, giving sterile digital mixes the depth and movement of real gear.
 
 | Parameter | Description |
 |-----------|-------------|
-| **Noise** | Console noise floor — a real noise sample captured from an analog mixing console |
-| **Harmonics** | Harmonic distortion — 70% 2nd harmonic (warm) and 30% 3rd harmonic (edge) |
+| **Noise** | Console noise floor: a real noise sample captured from an analog mixing console |
+| **Harmonics** | Harmonic distortion: 70% 2nd harmonic (warm) and 30% 3rd harmonic (edge) |
 | **Tube** | Tube-style `tanh` saturation, unity to 4x drive |
-| **Iron** | SSL-style console transformer — gain staging, asymmetric saturation, DC blocking, HF rolloff |
+| **Iron** | SSL-style console transformer: gain staging, asymmetric saturation, DC blocking, HF rolloff |
 | **Wide** | L/R decorrelation via per-channel random variation for a wider stereo image |
 
 ---
@@ -75,12 +75,12 @@ A **hard clipper** with a single threshold control. Start at 100% for transparen
 
 <img src="plugins/Loc-Box/docs/Loc-Box.png" width="280" alt="Loc-Box"/>
 
-A **Shure Level Loc (M62/M62V) brickwall limiter** emulation. The Level Loc is a discrete transistor limiter from the late 1960s — originally designed for PA use, it became a cult favorite for its aggressive, pumping compression character. Models the input/output transformers, JFET gain element, sidechain AC coupling, and ~20:1 brickwall ratio.
+A **Shure Level Loc (M62/M62V) brickwall limiter** emulation. The Level Loc is a discrete transistor limiter from the late 1960s, originally designed for PA use, that became a cult favorite for its aggressive, pumping compression character. Models the input/output transformers, JFET gain element, sidechain AC coupling, and ~20:1 brickwall ratio.
 
 | Parameter | Description |
 |-----------|-------------|
 | **Input** | Signal level into the limiter, up to +24 dB |
-| **Limit** | Compression amount — 0 dBFS threshold at 0%, −24 dBFS at 100% |
+| **Limit** | Compression amount: 0 dBFS threshold at 0%, -24 dBFS at 100% |
 | **Output** | Makeup gain, up to +24 dB |
 
 ---

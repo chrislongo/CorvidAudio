@@ -1,11 +1,11 @@
 # Dist308 Changelog
 
-### v1.1.0 — 2026-03-30
+### v1.1.0 -2026-03-30
 - Add VST3 build target
 - Use JUCE_DIR cache variable instead of hardcoded path (overridable via `-DJUCE_DIR=...`)
 - Add package script for signing, notarizing, and DMG creation
 
-### v1.0.0 — 2026-03-07
+### v1.0.0 -2026-03-07
 - Compute pre-clip LPF coefficient per-sample for accurate gain tracking at all distortion levels
 - Fix stereo channel index bug
 - Switch to exponential gain curve (47×–1047×); clean output at zero distortion

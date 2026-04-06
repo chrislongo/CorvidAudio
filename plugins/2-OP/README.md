@@ -30,10 +30,10 @@ Hold Shift while dragging any slider for fine-tune resolution.
 | Color | Tilt between lowpass filter and pure VCA (low = darker bloom, high = open VCA) |
 | Output | Output level (dB) |
 
-**PING toggle** — selects the LPG trigger mode:
+**PING toggle**: selects the LPG trigger mode:
 
 - **Outlined (Gate)**: LPG follows the MIDI gate. Attack ramps to velocity on note-on; release decays on note-off.
-- **Filled (Ping)**: Each note-on fires a single pitch-proportional impulse into the vactrol, which then decays freely. Holding a key has no effect — every note is a transient.
+- **Filled (Ping)**: Each note-on fires a single pitch-proportional impulse into the vactrol, which then decays freely. Holding a key has no effect; every note is a transient.
 
 ## Building
 
@@ -116,12 +116,12 @@ The env vars default to sibling directories (`../JUCE`, `../eurorack`) if not se
 | Format | AU Type | Manufacturer | Plugin Code | Bundle ID |
 |--------|---------|--------------|-------------|-----------|
 | AU Instrument | `aumu` | `CVDA` | `TWOP` | `com.CorvidAudio.TwoOpFM` |
-| VST3 | — | — | — | `com.CorvidAudio.TwoOpFM` |
+| VST3 | - | - | - | `com.CorvidAudio.TwoOpFM` |
 
 ## License
 
 Copyright 2026 Corvid Audio
 
-This project is licensed under the **GNU General Public License v3.0** — see [LICENSE](LICENSE) for the full text.
+This project is licensed under the **GNU General Public License v3.0**, see [LICENSE](LICENSE) for the full text.
 
 Incorporates source code from [Mutable Instruments Eurorack](https://github.com/pichenettes/eurorack) (Emilie Gillet), also licensed under GPL-3.0. JUCE is used under its [GPL-3.0 open-source licence](https://github.com/juce-framework/JUCE/blob/master/LICENSE.md).

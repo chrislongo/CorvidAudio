@@ -95,14 +95,14 @@ configure() {
         -DCMAKE_CXX_COMPILER="$(xcrun -f clang++)"
 }
 
-# build_all — compile every plugin in one cmake invocation
+# build_all: compile every plugin in one cmake invocation
 build_all() {
     echo ""
     echo "==> Building all plugins..."
     cmake --build "${BUILD_DIR}" --config Release
 }
 
-# build_plugin NAME — compile AU + VST3 for a single plugin
+# build_plugin NAME: compile AU + VST3 for a single plugin
 build_plugin() {
     local NAME="$1"
     local T="${PLUGIN_TARGET[$NAME]}"
@@ -112,7 +112,7 @@ build_plugin() {
         --target "${T}_AU" --target "${T}_VST3"
 }
 
-# sign_plugin NAME — codesign AU + VST3 for a single plugin
+# sign_plugin NAME: codesign AU + VST3 for a single plugin
 sign_plugin() {
     local NAME="$1"
     local ARTEFACT="${PLUGIN_ARTEFACT[$NAME]}"
@@ -131,7 +131,7 @@ sign_plugin() {
     codesign --verify --strict "${VST3_SRC}"
 }
 
-# stage_plugin NAME STAGING_DIR — copy AU + VST3 into a staging folder
+# stage_plugin NAME STAGING_DIR: copy AU + VST3 into a staging folder
 stage_plugin() {
     local NAME="$1"
     local STAGING="$2"
@@ -163,7 +163,7 @@ Restart your DAW after installation.
 README
 }
 
-# notarize_dmg PATH — notarize and staple a DMG
+# notarize_dmg PATH: notarize and staple a DMG
 notarize_dmg() {
     local TARGET="$1"
     echo "==> Submitting for notarization: $(basename "${TARGET}")..."
@@ -175,7 +175,7 @@ notarize_dmg() {
     spctl --assess --type open --context context:primary-signature "${TARGET}"
 }
 
-# notarize_zip PATH — notarize a ZIP (stapler does not support ZIP)
+# notarize_zip PATH: notarize a ZIP (stapler does not support ZIP)
 notarize_zip() {
     local TARGET="$1"
     echo "==> Submitting for notarization: $(basename "${TARGET}")..."
@@ -258,12 +258,12 @@ package_suite() {
 Corvid Audio Suite v${SUITE_VERSION}
 
 Includes:
-  2-OP      — 2-operator FM synthesizer
-  Broken    — Dying battery fuzz
-  Dist308   — ProCo Rat-inspired distortion
-  Headroom  — Hard clipper with threshold control
-  Life      — Analog character and warmth
-  Loc-Box   — Shure Level Loc brickwall limiter emulation
+  2-OP      - 2-operator FM synthesizer
+  Broken    - Dying battery fuzz
+  Dist308   - ProCo Rat-inspired distortion
+  Headroom  - Hard clipper with threshold control
+  Life      - Analog character and warmth
+  Loc-Box   - Shure Level Loc brickwall limiter emulation
 
 Install by copying the plugins to:
   AU:   /Library/Audio/Plug-Ins/Components/
