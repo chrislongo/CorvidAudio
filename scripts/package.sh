@@ -48,6 +48,11 @@ PLUGIN_ARTEFACT[2-OP]="TwoOpFM"
 PLUGIN_VERSION[2-OP]="1.1.0"
 PLUGIN_DESC[2-OP]="2-operator FM synthesizer"
 
+PLUGIN_TARGET[Broken]="Broken"
+PLUGIN_ARTEFACT[Broken]="Broken"
+PLUGIN_VERSION[Broken]="0.1.0"
+PLUGIN_DESC[Broken]="Dying battery fuzz"
+
 PLUGIN_TARGET[Dist308]="Dist308"
 PLUGIN_ARTEFACT[Dist308]="Dist308"
 PLUGIN_VERSION[Dist308]="1.1.0"
@@ -68,7 +73,7 @@ PLUGIN_ARTEFACT[Loc-Box]="LocBox"
 PLUGIN_VERSION[Loc-Box]="0.3.1"
 PLUGIN_DESC[Loc-Box]="Shure Level Loc brickwall limiter emulation"
 
-ALL_PLUGINS=("2-OP" "Dist308" "Headroom" "Life" "Loc-Box")
+ALL_PLUGINS=("2-OP" "Broken" "Dist308" "Headroom" "Life" "Loc-Box")
 
 # ------------------------------------------------------------------
 # Helpers
@@ -254,6 +259,7 @@ Corvid Audio Suite v${SUITE_VERSION}
 
 Includes:
   2-OP      — 2-operator FM synthesizer
+  Broken    — Dying battery fuzz
   Dist308   — ProCo Rat-inspired distortion
   Headroom  — Hard clipper with threshold control
   Life      — Analog character and warmth
