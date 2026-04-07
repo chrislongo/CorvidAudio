@@ -28,6 +28,20 @@ A monophonic **2-operator FM synthesizer**. The DSP engine is the `FMEngine` fro
 
 ---
 
+### Broken
+
+<img src="plugins/Broken/docs/Broken.png" width="320" alt="Broken"/>
+
+A **circuit failure emulator**. Models the behavior of a transistor-based circuit operating outside its design envelope: as supply voltage drops, the transistor loses its stable operating point and begins oscillating between cutoff and saturation on every audio cycle. The result ranges from asymmetric clipping at full voltage down to sputtering, gated disintegration as the circuit collapses.
+
+| Parameter | Description |
+|-----------|-------------|
+| **Drive** | Input gain into the circuit: audio taper, 1x to 10x |
+| **Starve** | Supply voltage. 0 = nominal operation; as it rises the circuit loses its bias point and breaks apart |
+| **Output** | Output level trim |
+
+---
+
 ### Dist308
 
 <img src="plugins/Dist308/docs/Dist308.png" width="280" alt="Dist308"/>
@@ -114,6 +128,7 @@ cmake --build build --config Release
 
 ```bash
 cmake --build build --config Release --target TwoOpFM    # 2-OP
+cmake --build build --config Release --target Broken     # Broken
 cmake --build build --config Release --target Dist308    # Dist308
 cmake --build build --config Release --target Headroom   # Headroom
 cmake --build build --config Release --target Life       # Life
@@ -124,6 +139,7 @@ cmake --build build --config Release --target LocBox     # Loc-Box
 
 ```bash
 auval -v aumu TWOP CVDA   # 2-OP (instrument)
+auval -v aufx BRKN CVDA   # Broken
 auval -v aufx D308 CVDA   # Dist308
 auval -v aufx HDRM CVDA   # Headroom
 auval -v aufx LIFE CVDA   # Life

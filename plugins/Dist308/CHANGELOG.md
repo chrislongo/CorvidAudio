@@ -4,6 +4,8 @@
 - Add plugin name to UI
 - Panel height increased to 230px to match suite standard
 - Label font size increased to 12pt to match suite standard
+- Knob tick marks added
+- Mixed-case parameter labels (Distortion, Filter, Volume)
 
 ### v1.1.0 -2026-03-30
 - Add VST3 build target

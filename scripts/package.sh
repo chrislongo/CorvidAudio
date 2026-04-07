@@ -24,7 +24,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "${REPO_ROOT}"
 
 # ---- Suite version ----
-SUITE_VERSION="1.1.0"
+SUITE_VERSION="1.2.0"
 
 # ---- Signing identity ----
 SIGN_ID="Developer ID Application"
@@ -50,12 +50,12 @@ PLUGIN_DESC[2-OP]="2-operator FM synthesizer"
 
 PLUGIN_TARGET[Broken]="Broken"
 PLUGIN_ARTEFACT[Broken]="Broken"
-PLUGIN_VERSION[Broken]="0.1.0"
-PLUGIN_DESC[Broken]="Dying battery fuzz"
+PLUGIN_VERSION[Broken]="0.2.0"
+PLUGIN_DESC[Broken]="Circuit failure emulator"
 
 PLUGIN_TARGET[Dist308]="Dist308"
 PLUGIN_ARTEFACT[Dist308]="Dist308"
-PLUGIN_VERSION[Dist308]="1.1.0"
+PLUGIN_VERSION[Dist308]="1.2.0"
 PLUGIN_DESC[Dist308]="ProCo Rat-inspired distortion"
 
 PLUGIN_TARGET[Life]="Life"

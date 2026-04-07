@@ -5,20 +5,6 @@
 #include <CorvidLookAndFeel.h>
 
 //==============================================================================
-class BlackKnobLookAndFeel : public juce::LookAndFeel_V4
-{
-public:
-    BlackKnobLookAndFeel();
-
-    void drawRotarySlider (juce::Graphics& g,
-                           int x, int y, int width, int height,
-                           float sliderPosProportional,
-                           float rotaryStartAngle,
-                           float rotaryEndAngle,
-                           juce::Slider& slider) override;
-};
-
-//==============================================================================
 class Dist308AudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
@@ -29,7 +15,7 @@ public:
     void resized() override;
 
 private:
-    BlackKnobLookAndFeel blackKnobLAF;
+    corvid::BlackKnobLookAndFeel blackKnobLAF;
 
     juce::Slider distKnob, filterKnob, volumeKnob;
     juce::Label  distLabel, filterLabel, volumeLabel;

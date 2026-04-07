@@ -1,62 +1,6 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-// BlackKnobLookAndFeel
-//==============================================================================
-
-BlackKnobLookAndFeel::BlackKnobLookAndFeel() {}
-
-void BlackKnobLookAndFeel::drawRotarySlider (juce::Graphics& g,
-                                              int x, int y, int width, int height,
-                                              float sliderPosProportional,
-                                              float rotaryStartAngle,
-                                              float rotaryEndAngle,
-                                              juce::Slider&)
-{
-    const float cx = x + width  * 0.5f;
-    const float cy = y + height * 0.5f;
-    const float r  = juce::jmin (width, height) * 0.5f - 2.0f;
-
-    // Drop shadow
-    {
-        juce::ColourGradient shadow (juce::Colour (0x50000000), cx, cy + r * 0.1f,
-                                     juce::Colours::transparentBlack, cx, cy + r * 1.3f, true);
-        g.setGradientFill (shadow);
-        g.fillEllipse (cx - r - 3.0f, cy - r + 4.0f, (r + 3.0f) * 2.0f, (r + 3.0f) * 2.0f);
-    }
-
-    // Black body
-    g.setColour (juce::Colour (0xff111111));
-    g.fillEllipse (cx - r, cy - r, r * 2.0f, r * 2.0f);
-
-    // Subtle top-edge highlight
-    {
-        juce::ColourGradient highlight (juce::Colour (0x25ffffff), cx, cy - r,
-                                        juce::Colours::transparentBlack, cx, cy, false);
-        g.setGradientFill (highlight);
-        g.fillEllipse (cx - r, cy - r, r * 2.0f, r * 2.0f);
-    }
-
-    // White indicator line
-    {
-        const float angle = rotaryStartAngle
-                          + sliderPosProportional * (rotaryEndAngle - rotaryStartAngle);
-        const float sinA  = std::sin (angle);
-        const float cosA  = -std::cos (angle);
-
-        const float innerR = r * 0.30f;
-        const float outerR = r * 0.78f;
-
-        juce::Path line;
-        line.startNewSubPath (cx + sinA * innerR, cy + cosA * innerR);
-        line.lineTo          (cx + sinA * outerR, cy + cosA * outerR);
-
-        g.setColour (juce::Colours::white);
-        g.strokePath (line, juce::PathStrokeType (2.2f));
-    }
-}
-
-//==============================================================================
 // Dist308AudioProcessorEditor
 //==============================================================================
 
@@ -73,6 +17,9 @@ Dist308AudioProcessorEditor::Dist308AudioProcessorEditor (Dist308AudioProcessor&
     {
         knob->setSliderStyle (juce::Slider::RotaryVerticalDrag);
         knob->setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
+        knob->setRotaryParameters (juce::MathConstants<float>::pi * 1.25f,
+                                    juce::MathConstants<float>::pi * 2.75f,
+                                    true);
         knob->setLookAndFeel (&blackKnobLAF);
         addAndMakeVisible (knob);
     }
@@ -86,9 +33,9 @@ Dist308AudioProcessorEditor::Dist308AudioProcessorEditor (Dist308AudioProcessor&
         addAndMakeVisible (label);
     };
 
-    setupLabel (distLabel,   "DISTORTION");
-    setupLabel (filterLabel, "FILTER");
-    setupLabel (volumeLabel, "VOLUME");
+    setupLabel (distLabel,   "Distortion");
+    setupLabel (filterLabel, "Filter");
+    setupLabel (volumeLabel, "Volume");
 }
 
 Dist308AudioProcessorEditor::~Dist308AudioProcessorEditor()
@@ -110,12 +57,11 @@ void Dist308AudioProcessorEditor::paint (juce::Graphics& g)
 void Dist308AudioProcessorEditor::resized()
 {
     constexpr int cx[3]  = { 53, 160, 267 };
-    constexpr int r      = 36;
+    constexpr int r      = 48;  // 36 knob body + 12 tick margin each side
     constexpr int gap    = 4;
     constexpr int labelH = 15;
     constexpr int labelW = 100;
 
-    // Centre the knob+gap+label group vertically in the panel
     const int groupH = r * 2 + gap + labelH;
     const int cy     = (getHeight() - groupH) / 2 + r;
 
