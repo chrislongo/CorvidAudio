@@ -22,7 +22,7 @@ BrokenAudioProcessor::createParameterLayout()
     // Skew concentrates the usable action in the lower half of the knob:
     // 9 o'clock (~30%) is where things really break up.
     juce::NormalisableRange<float> biasRange (0.0f, 100.0f, 0.1f);
-    biasRange.setSkewForCentre (45.0f);
+    biasRange.setSkewForCentre (30.0f);
     layout.add (std::make_unique<juce::AudioParameterFloat> (
         juce::ParameterID { "bias", 1 }, "Starve", biasRange, 0.0f,
         juce::AudioParameterFloatAttributes().withLabel (" %")));
@@ -84,7 +84,7 @@ void BrokenAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     // Maximum dead-zone threshold at bias=0.
     // Positive side: Q2 snapping from cutoff to saturation (hard, velcro character).
     // Negative side: Q2 backing out of saturation (softer response).
-    constexpr float kMaxThreshold = 0.9f;
+    constexpr float kMaxThreshold = 1.2f;
     constexpr float kAsymRatio    = 0.5f;
     constexpr float kSnapPos      = 8.0f;
     constexpr float kSnapNeg      = 3.0f;
