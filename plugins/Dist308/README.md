@@ -2,7 +2,7 @@
 
 # Dist308
 
-![Dist308](docs/dist308.png)
+![Dist308](docs/Dist308.png)
 
 A ProCo RAT-inspired distortion AU/VST3 plugin, built with [JUCE](https://juce.com).
 

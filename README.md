@@ -30,7 +30,7 @@ A monophonic **2-operator FM synthesizer**. The DSP engine is the `FMEngine` fro
 
 ### Dist308
 
-<img src="plugins/Dist308/docs/dist308.png" width="280" alt="Dist308"/>
+<img src="plugins/Dist308/docs/Dist308.png" width="280" alt="Dist308"/>
 
 A **ProCo RAT-inspired distortion**. Models the key stages of the classic RAT circuit: a high-pass filter removes bass bloom before clipping, a pre-clip low-pass filter models the LM308 op-amp's gain-bandwidth product, `tanh` saturation emulates the diode clipping, and a post-clip tone filter provides the Filter control.
 
