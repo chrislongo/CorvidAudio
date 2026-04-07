@@ -230,9 +230,6 @@ package_plugin() {
     mkdir -p "${STAGING}"
     stage_plugin "${NAME}" "${STAGING}"
     write_readme "${NAME}" "${VERSION}" "${DESC}" "${STAGING}"
-    ln -s "/Library/Audio/Plug-Ins/Components" "${STAGING}/AU Plugins"
-    ln -s "/Library/Audio/Plug-Ins/VST3"       "${STAGING}/VST3 Plugins"
-
     mkdir -p "${DIST_DIR}"
     make_dmg_and_zip "${STAGING}" "${NAME} ${VERSION}" "${OUT_BASE}"
 
@@ -271,9 +268,6 @@ Install by copying the plugins to:
 
 Restart your DAW after installation.
 README
-
-    ln -s "/Library/Audio/Plug-Ins/Components" "${STAGING}/AU Plugins"
-    ln -s "/Library/Audio/Plug-Ins/VST3"       "${STAGING}/VST3 Plugins"
 
     mkdir -p "${DIST_DIR}"
     make_dmg_and_zip "${STAGING}" "Corvid Audio Suite ${SUITE_VERSION}" "${OUT_BASE}"
