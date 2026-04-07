@@ -36,7 +36,7 @@ private:
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
     juce::SmoothedValue<float> driveSmoothed;
-    juce::SmoothedValue<float> biasSmoothed;
+    juce::SmoothedValue<float> starveSmoothed;
     juce::SmoothedValue<float> outputSmoothed;
 
     float dcXPrev[2] = { 0.0f, 0.0f };

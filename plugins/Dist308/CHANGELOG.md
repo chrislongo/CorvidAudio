@@ -1,5 +1,10 @@
 # Dist308 Changelog
 
+### v1.2.0 -2026-04-06
+- Add plugin name to UI
+- Panel height increased to 230px to match suite standard
+- Label font size increased to 12pt to match suite standard
+
 ### v1.1.0 -2026-03-30
 - Add VST3 build target
 - Use JUCE_DIR cache variable instead of hardcoded path (overridable via `-DJUCE_DIR=...`)

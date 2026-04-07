@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include <CorvidLookAndFeel.h>
 
 //==============================================================================
 class BlackKnobLookAndFeel : public juce::LookAndFeel_V4

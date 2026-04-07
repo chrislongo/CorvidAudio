@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0
+
+- Rename Bias knob to Starve; invert direction (0 = clean, 100 = fully starved/velcro)
+- Panel height increased to 230px to match suite standard
+- Label font size increased to 12pt to match suite standard
+
 ## v0.1.0
 
 - Initial release: dying battery fuzz inspired by fuzz face bias pot

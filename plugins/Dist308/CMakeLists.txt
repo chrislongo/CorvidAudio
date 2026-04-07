@@ -4,6 +4,7 @@ juce_add_plugin(Dist308
     COMPANY_NAME             "CorvidAudio"
     PLUGIN_MANUFACTURER_CODE CVDA
     PLUGIN_CODE              D308
+    PLUGIN_VERSION           "1.2.0"
     FORMATS                  AU VST3 Standalone
     PRODUCT_NAME             "Dist308"
     DESCRIPTION              "ProCo Rat-inspired distortion"
@@ -30,6 +31,7 @@ target_compile_definitions(Dist308 PUBLIC
 )
 
 target_link_libraries(Dist308 PUBLIC
+    CorvidShared
     juce::juce_audio_basics
     juce::juce_audio_processors
     juce::juce_audio_plugin_client

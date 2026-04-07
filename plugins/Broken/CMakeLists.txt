@@ -4,7 +4,7 @@ juce_add_plugin(Broken
     COMPANY_NAME             "CorvidAudio"
     PLUGIN_MANUFACTURER_CODE CVDA
     PLUGIN_CODE              BRKN
-    PLUGIN_VERSION           "0.1.0"
+    PLUGIN_VERSION           "0.2.0"
     FORMATS                  AU VST3 Standalone
     PRODUCT_NAME             "Broken"
     DESCRIPTION              "Dying battery fuzz"

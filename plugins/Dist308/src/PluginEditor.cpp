@@ -66,7 +66,7 @@ Dist308AudioProcessorEditor::Dist308AudioProcessorEditor (Dist308AudioProcessor&
       filterAttachment (p.apvts, "filter",     filterKnob),
       volumeAttachment (p.apvts, "volume",     volumeKnob)
 {
-    setSize (320, 200);
+    setSize (320, 230);
 
     juce::Slider* knobs[] = { &distKnob, &filterKnob, &volumeKnob };
     for (auto* knob : knobs)
@@ -80,7 +80,7 @@ Dist308AudioProcessorEditor::Dist308AudioProcessorEditor (Dist308AudioProcessor&
     auto setupLabel = [this] (juce::Label& label, const char* text)
     {
         label.setText (text, juce::dontSendNotification);
-        label.setFont (juce::Font (juce::FontOptions().withHeight (10.0f).withStyle ("Bold")));
+        label.setFont (juce::Font (juce::FontOptions().withHeight (12.0f).withStyle ("Bold")));
         label.setColour (juce::Label::textColourId, juce::Colour (0xff111111));
         label.setJustificationType (juce::Justification::centred);
         addAndMakeVisible (label);
@@ -100,13 +100,11 @@ Dist308AudioProcessorEditor::~Dist308AudioProcessorEditor()
 
 void Dist308AudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.setColour (juce::Colour (0xffd8d8d8));
-    g.fillAll();
+    corvid::paintPanelBackground (g, getWidth(), getHeight());
 
-    juce::ColourGradient overlay (juce::Colour (0x18ffffff), 0.0f, 0.0f,
-                                   juce::Colour (0x18000000), 0.0f, static_cast<float> (getHeight()), false);
-    g.setGradientFill (overlay);
-    g.fillAll();
+    g.setColour (juce::Colour (0xff111111));
+    g.setFont (juce::Font (juce::FontOptions().withHeight (20.0f).withStyle ("Bold")));
+    g.drawText ("Dist308", 12, 4, 150, 24, juce::Justification::bottomLeft);
 }
 
 void Dist308AudioProcessorEditor::resized()
