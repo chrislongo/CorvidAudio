@@ -38,6 +38,7 @@ A **circuit failure emulator**. Models the behavior of a transistor-based circui
 |-----------|-------------|
 | **Drive** | Input gain into the circuit: audio taper, 1x to 10x |
 | **Starve** | Supply voltage. 0 = nominal operation; as it rises the circuit loses its bias point and breaks apart |
+| **Mix** | Dry/wet blend. 0 = clean input, 100 = fully processed |
 | **Output** | Output level trim |
 
 ---

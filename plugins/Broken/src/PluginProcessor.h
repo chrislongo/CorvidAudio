@@ -37,6 +37,7 @@ private:
 
     juce::SmoothedValue<float> driveSmoothed;
     juce::SmoothedValue<float> starveSmoothed;
+    juce::SmoothedValue<float> mixSmoothed;
     juce::SmoothedValue<float> outputSmoothed;
 
     float dcXPrev[2] = { 0.0f, 0.0f };

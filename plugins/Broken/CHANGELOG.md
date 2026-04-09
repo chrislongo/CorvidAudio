@@ -1,5 +1,9 @@
 # Broken Changelog
 
+### v0.3.0 -2026-04-08
+- Add Mix knob (dry/wet blend, default 100% wet)
+- Panel width increased to 430px to accommodate fourth knob
+
 ### v0.2.0 -2026-04-06
 - Rename Bias knob to Starve; invert direction (0 = nominal, 100 = fully collapsed)
 - Panel height increased to 230px to match suite standard

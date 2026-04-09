@@ -28,6 +28,11 @@ BrokenAudioProcessor::createParameterLayout()
         juce::AudioParameterFloatAttributes().withLabel (" %")));
 
     layout.add (std::make_unique<juce::AudioParameterFloat> (
+        juce::ParameterID { "mix", 1 }, "Mix",
+        juce::NormalisableRange<float> (0.0f, 100.0f, 0.1f), 100.0f,
+        juce::AudioParameterFloatAttributes().withLabel (" %")));
+
+    layout.add (std::make_unique<juce::AudioParameterFloat> (
         juce::ParameterID { "output", 1 }, "Output",
         juce::NormalisableRange<float> (-20.0f, 6.0f, 0.1f), 0.0f,
         juce::AudioParameterFloatAttributes().withLabel (" dB")));
@@ -38,14 +43,17 @@ BrokenAudioProcessor::createParameterLayout()
 void BrokenAudioProcessor::prepareToPlay (double sampleRate, int)
 {
     driveSmoothed.reset  (sampleRate, 0.02);
-    starveSmoothed.reset   (sampleRate, 0.02);
+    starveSmoothed.reset (sampleRate, 0.02);
+    mixSmoothed.reset    (sampleRate, 0.02);
     outputSmoothed.reset (sampleRate, 0.02);
 
-    const float initDrive  = apvts.getRawParameterValue ("drive")->load() / 100.0f;
-    const float initBias   = apvts.getRawParameterValue ("bias")->load()  / 100.0f;
+    const float initDrive  = apvts.getRawParameterValue ("drive")->load()  / 100.0f;
+    const float initBias   = apvts.getRawParameterValue ("bias")->load()   / 100.0f;
+    const float initMix    = apvts.getRawParameterValue ("mix")->load()    / 100.0f;
     const float initOutput = juce::Decibels::decibelsToGain (apvts.getRawParameterValue ("output")->load());
     driveSmoothed.setCurrentAndTargetValue  (initDrive);
-    starveSmoothed.setCurrentAndTargetValue   (initBias);
+    starveSmoothed.setCurrentAndTargetValue (initBias);
+    mixSmoothed.setCurrentAndTargetValue    (initMix);
     outputSmoothed.setCurrentAndTargetValue (initOutput);
 
     // DC block: y[n] = x[n] - x[n-1] + alpha * y[n-1], fc ~30 Hz
@@ -73,8 +81,9 @@ void BrokenAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 {
     juce::ScopedNoDenormals noDenormals;
 
-    driveSmoothed.setTargetValue  (apvts.getRawParameterValue ("drive")->load() / 100.0f);
-    starveSmoothed.setTargetValue   (apvts.getRawParameterValue ("bias")->load()  / 100.0f);
+    driveSmoothed.setTargetValue  (apvts.getRawParameterValue ("drive")->load()  / 100.0f);
+    starveSmoothed.setTargetValue (apvts.getRawParameterValue ("bias")->load()   / 100.0f);
+    mixSmoothed.setTargetValue    (apvts.getRawParameterValue ("mix")->load()    / 100.0f);
     outputSmoothed.setTargetValue (juce::Decibels::decibelsToGain (
                                        apvts.getRawParameterValue ("output")->load()));
 
@@ -92,7 +101,8 @@ void BrokenAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (int i = 0; i < numSamples; ++i)
     {
         const float d = driveSmoothed.getNextValue();   // 0–1
-        const float b = starveSmoothed.getNextValue();    // 0=dying, 1=healthy
+        const float b = starveSmoothed.getNextValue();   // 0=clean, 1=starved
+        const float m = mixSmoothed.getNextValue();      // 0=dry, 1=wet
         const float v = outputSmoothed.getNextValue();
 
         // Drive: audio taper, 1× to 10× gain (0% → unity, 100% → +20 dB)
@@ -104,6 +114,8 @@ void BrokenAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         for (int ch = 0; ch < numChannels && ch < 2; ++ch)
         {
             float& x = buffer.getWritePointer (ch)[i];
+            const float dry = x;
+
             x *= kDrive;
 
             float y;
@@ -128,7 +140,7 @@ void BrokenAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
             dcXPrev[ch] = yIn;
             dcYPrev[ch] = y;
 
-            x = y * v;
+            x = (m * y + (1.0f - m) * dry) * v;
         }
     }
 }

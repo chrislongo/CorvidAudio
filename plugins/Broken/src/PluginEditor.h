@@ -16,11 +16,12 @@ public:
 private:
     corvid::BlackKnobLookAndFeel knobLAF;
 
-    juce::Slider driveKnob, starveKnob, outputKnob;
-    juce::Label  driveLabel, starveLabel, outputLabel;
+    juce::Slider driveKnob, starveKnob, mixKnob, outputKnob;
+    juce::Label  driveLabel, starveLabel, mixLabel, outputLabel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> driveAttachment,
                                                                            starveAttachment,
+                                                                           mixAttachment,
                                                                            outputAttachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BrokenAudioProcessorEditor)

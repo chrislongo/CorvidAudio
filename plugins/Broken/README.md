@@ -14,6 +14,7 @@ Models the behavior of a transistor-based circuit operating outside its design e
 |-----------|-------|-------------|
 | Drive | 0–100 | Input gain into the circuit: audio taper, 1× to 10× |
 | Starve | 0–100 | Supply voltage. 0 = nominal operation; as it rises the circuit loses its bias point and breaks apart |
+| Mix | 0–100 | Dry/wet blend. 0 = clean input, 100 = fully processed |
 | Output | -20–+6 dB | Output level trim |
 
 ## Building

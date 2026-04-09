@@ -1,5 +1,13 @@
 # Corvid Audio Suite Changelog
 
+## v1.2.1 -2026-04-08
+
+**Broken v0.3.0**
+- Add Mix knob (dry/wet blend, default 100% wet)
+- Panel width increased to 430px to accommodate fourth knob
+
+---
+
 ## v1.2.0 -2026-04-06
 
 **Broken v0.2.0**

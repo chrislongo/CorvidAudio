@@ -50,7 +50,7 @@ PLUGIN_DESC[2-OP]="2-operator FM synthesizer"
 
 PLUGIN_TARGET[Broken]="Broken"
 PLUGIN_ARTEFACT[Broken]="Broken"
-PLUGIN_VERSION[Broken]="0.2.0"
+PLUGIN_VERSION[Broken]="0.3.0"
 PLUGIN_DESC[Broken]="Circuit failure emulator"
 
 PLUGIN_TARGET[Dist308]="Dist308"

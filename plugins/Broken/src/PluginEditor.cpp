@@ -4,12 +4,14 @@ BrokenAudioProcessorEditor::BrokenAudioProcessorEditor (BrokenAudioProcessor& p)
     : AudioProcessorEditor (&p),
       driveAttachment  (std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (
           p.apvts, "drive",  driveKnob)),
-      starveAttachment   (std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (
+      starveAttachment (std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (
           p.apvts, "bias",   starveKnob)),
+      mixAttachment    (std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (
+          p.apvts, "mix",    mixKnob)),
       outputAttachment (std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment> (
           p.apvts, "output", outputKnob))
 {
-    for (auto* knob : { &driveKnob, &starveKnob, &outputKnob })
+    for (auto* knob : { &driveKnob, &starveKnob, &mixKnob, &outputKnob })
     {
         knob->setSliderStyle (juce::Slider::RotaryVerticalDrag);
         knob->setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
@@ -30,15 +32,16 @@ BrokenAudioProcessorEditor::BrokenAudioProcessorEditor (BrokenAudioProcessor& p)
     };
 
     setupLabel (driveLabel,  "Drive");
-    setupLabel (starveLabel,   "Starve");
+    setupLabel (starveLabel, "Starve");
+    setupLabel (mixLabel,    "Mix");
     setupLabel (outputLabel, "Output");
 
-    setSize (320, 230);
+    setSize (430, 230);
 }
 
 BrokenAudioProcessorEditor::~BrokenAudioProcessorEditor()
 {
-    for (auto* knob : { &driveKnob, &starveKnob, &outputKnob })
+    for (auto* knob : { &driveKnob, &starveKnob, &mixKnob, &outputKnob })
         knob->setLookAndFeel (nullptr);
 }
 
@@ -53,7 +56,7 @@ void BrokenAudioProcessorEditor::paint (juce::Graphics& g)
 
 void BrokenAudioProcessorEditor::resized()
 {
-    constexpr int cx[3]  = { 53, 160, 267 };
+    constexpr int cx[4]  = { 53, 160, 267, 374 };
     constexpr int r      = 48;  // 36 knob body + 12 tick margin each side
     constexpr int gap    = 4;
     constexpr int labelH = 15;
@@ -62,10 +65,10 @@ void BrokenAudioProcessorEditor::resized()
     const int groupH = r * 2 + gap + labelH;
     const int cy     = (getHeight() - groupH) / 2 + r;
 
-    juce::Slider* knobs[]  = { &driveKnob,  &starveKnob,  &outputKnob  };
-    juce::Label*  labels[] = { &driveLabel, &starveLabel, &outputLabel };
+    juce::Slider* knobs[]  = { &driveKnob,  &starveKnob,  &mixKnob,  &outputKnob  };
+    juce::Label*  labels[] = { &driveLabel, &starveLabel, &mixLabel, &outputLabel };
 
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 4; ++i)
     {
         knobs[i] ->setBounds (cx[i] - r,        cy - r,        r * 2,  r * 2);
         labels[i]->setBounds (cx[i] - labelW/2, cy + r + gap,  labelW, labelH);
