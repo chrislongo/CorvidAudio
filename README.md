@@ -128,24 +128,32 @@ cmake --build build --config Release
 ### Build a single plugin
 
 ```bash
-cmake --build build --config Release --target TwoOpFM    # 2-OP
-cmake --build build --config Release --target Broken     # Broken
-cmake --build build --config Release --target Dist308    # Dist308
-cmake --build build --config Release --target Headroom   # Headroom
-cmake --build build --config Release --target Life       # Life
-cmake --build build --config Release --target LocBox     # Loc-Box
+cmake --build build --config Release --target <plugin>
 ```
+
+| Plugin | `<plugin>` |
+|--------|-----------|
+| 2-OP | `TwoOpFM` |
+| Broken | `Broken` |
+| Dist308 | `Dist308` |
+| Headroom | `Headroom` |
+| Life | `Life` |
+| Loc-Box | `LocBox` |
 
 ### Validate
 
 ```bash
-auval -v aumu TWOP CVDA   # 2-OP (instrument)
-auval -v aufx BRKN CVDA   # Broken
-auval -v aufx D308 CVDA   # Dist308
-auval -v aufx HDRM CVDA   # Headroom
-auval -v aufx LIFE CVDA   # Life
-auval -v aufx LBOX CVDA   # Loc-Box
+auval -v <type> <code> CVDA
 ```
+
+| Plugin | `<type>` | `<code>` |
+|--------|---------|---------|
+| 2-OP | `aumu` | `TWOP` |
+| Broken | `aufx` | `BRKN` |
+| Dist308 | `aufx` | `D308` |
+| Headroom | `aufx` | `HDRM` |
+| Life | `aufx` | `LIFE` |
+| Loc-Box | `aufx` | `LBOX` |
 
 ## License
 
