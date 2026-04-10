@@ -24,7 +24,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "${REPO_ROOT}"
 
 # ---- Suite version ----
-SUITE_VERSION="1.2.0"
+SUITE_VERSION="1.3.0"
 
 # ---- Signing identity ----
 SIGN_ID="Developer ID Application"
@@ -45,32 +45,32 @@ declare -A PLUGIN_DESC
 
 PLUGIN_TARGET[2-OP]="TwoOpFM"
 PLUGIN_ARTEFACT[2-OP]="TwoOpFM"
-PLUGIN_VERSION[2-OP]="1.1.0"
+PLUGIN_VERSION[2-OP]="1.2.0"
 PLUGIN_DESC[2-OP]="2-operator FM synthesizer"
 
 PLUGIN_TARGET[Broken]="Broken"
 PLUGIN_ARTEFACT[Broken]="Broken"
-PLUGIN_VERSION[Broken]="0.3.0"
+PLUGIN_VERSION[Broken]="0.4.0"
 PLUGIN_DESC[Broken]="Circuit failure emulator"
 
 PLUGIN_TARGET[Dist308]="Dist308"
 PLUGIN_ARTEFACT[Dist308]="Dist308"
-PLUGIN_VERSION[Dist308]="1.2.0"
+PLUGIN_VERSION[Dist308]="1.3.0"
 PLUGIN_DESC[Dist308]="ProCo Rat-inspired distortion"
 
 PLUGIN_TARGET[Life]="Life"
 PLUGIN_ARTEFACT[Life]="Life"
-PLUGIN_VERSION[Life]="0.5.0"
+PLUGIN_VERSION[Life]="0.6.0"
 PLUGIN_DESC[Life]="Analog character and warmth"
 
 PLUGIN_TARGET[Headroom]="Headroom"
 PLUGIN_ARTEFACT[Headroom]="Headroom"
-PLUGIN_VERSION[Headroom]="0.2.0"
+PLUGIN_VERSION[Headroom]="0.3.0"
 PLUGIN_DESC[Headroom]="Hard clipper with threshold control"
 
 PLUGIN_TARGET[Loc-Box]="LocBox"
 PLUGIN_ARTEFACT[Loc-Box]="LocBox"
-PLUGIN_VERSION[Loc-Box]="0.3.1"
+PLUGIN_VERSION[Loc-Box]="0.4.0"
 PLUGIN_DESC[Loc-Box]="Shure Level Loc brickwall limiter emulation"
 
 ALL_PLUGINS=("2-OP" "Broken" "Dist308" "Headroom" "Life" "Loc-Box")

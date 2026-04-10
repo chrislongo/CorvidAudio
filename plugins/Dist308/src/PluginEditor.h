@@ -17,7 +17,7 @@ public:
 private:
     corvid::BlackKnobLookAndFeel blackKnobLAF;
 
-    juce::Slider distKnob, filterKnob, volumeKnob;
+    corvid::Slider distKnob, filterKnob, volumeKnob;
     juce::Label  distLabel, filterLabel, volumeLabel;
 
     juce::AudioProcessorValueTreeState::SliderAttachment distAttachment,

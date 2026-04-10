@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0 -2026-04-09
+
+- Shift+drag fine-tune on all knobs (1/10 sensitivity)
+
 ## 0.3.1 -2026-04-01
 
 - Fix knob tick marks at 3 and 9 o'clock not being straight (set explicit 270° rotary sweep)

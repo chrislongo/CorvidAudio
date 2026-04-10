@@ -4,7 +4,7 @@ juce_add_plugin(LocBox
     COMPANY_NAME             "CorvidAudio"
     PLUGIN_MANUFACTURER_CODE CVDA
     PLUGIN_CODE              LBOX
-    PLUGIN_VERSION           "0.3.1"
+    PLUGIN_VERSION           "0.4.0"
     FORMATS                  AU VST3 Standalone
     PRODUCT_NAME             "Loc-Box"
     DESCRIPTION              "Shure Level Loc brickwall limiter emulation"

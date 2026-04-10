@@ -90,9 +90,18 @@ void BrokenAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     const int numChannels = buffer.getNumChannels();
     const int numSamples  = buffer.getNumSamples();
 
-    // Maximum dead-zone threshold at bias=0.
-    // Positive side: Q2 snapping from cutoff to saturation (hard, velcro character).
-    // Negative side: Q2 backing out of saturation (softer response).
+    // Dead-zone clipper constants.
+    //
+    // kMaxThreshold: at full Starve (b=1), signals must exceed this level to
+    //   produce any output. Raising it makes 100% Starve more extreme.
+    //
+    // kAsymRatio: negative threshold = posThresh * kAsymRatio. <1.0 makes the
+    //   negative side break up earlier, adding even-order harmonic content and
+    //   a DC offset that the downstream HPF removes.
+    //
+    // kSnapPos / kSnapNeg: tanh steepness when the signal breaks out of the
+    //   dead zone. Higher = harder snap (more velcro click). The asymmetry
+    //   between pos and neg slopes the harmonic spectrum toward odd partials.
     constexpr float kMaxThreshold = 1.2f;
     constexpr float kAsymRatio    = 0.5f;
     constexpr float kSnapPos      = 8.0f;

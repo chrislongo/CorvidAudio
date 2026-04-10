@@ -18,7 +18,7 @@ private:
     corvid::BlackKnobLookAndFeel blackKnobLAF;
 
     // 4 knobs in a row
-    juce::Slider noiseKnob, thdKnob, satKnob, xfmrKnob;
+    corvid::Slider noiseKnob, thdKnob, satKnob, xfmrKnob;
     juce::Label  noiseLabel, thdLabel, satLabel, xfmrLabel;
 
     juce::AudioProcessorValueTreeState::SliderAttachment noiseAttachment,

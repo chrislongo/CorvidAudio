@@ -1,5 +1,8 @@
 # Dist308 Changelog
 
+### v1.3.0 -2026-04-09
+- Shift+drag fine-tune on all knobs (1/10 sensitivity)
+
 ### v1.2.0 -2026-04-06
 - Add plugin name to UI
 - Panel height increased to 230px to match suite standard

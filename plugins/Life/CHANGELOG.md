@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.6.0 -2026-04-09
+
+- Shift+drag fine-tune on all knobs (1/10 sensitivity)
+
 ## v0.5.0
 
 - Fix Iron pop on engagement: transformer chain always runs with dry/wet blend (drive=0 is 100% dry), eliminating the DC blocker step-discontinuity that caused the click

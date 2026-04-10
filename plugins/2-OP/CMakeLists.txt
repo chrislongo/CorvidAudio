@@ -4,7 +4,7 @@ juce_add_plugin(TwoOpFM
     COMPANY_NAME            "CorvidAudio"
     PLUGIN_MANUFACTURER_CODE CVDA
     PLUGIN_CODE             TWOP
-    PLUGIN_VERSION          "1.1.0"
+    PLUGIN_VERSION          "1.2.0"
     FORMATS                 AU VST3 Standalone
     IS_SYNTH                TRUE
     NEEDS_MIDI_INPUT        TRUE
@@ -37,6 +37,7 @@ target_compile_definitions(TwoOpFM PUBLIC
 )
 
 target_link_libraries(TwoOpFM PRIVATE
+    CorvidShared
     juce::juce_audio_utils
     juce::juce_audio_devices
     juce::juce_audio_plugin_client

@@ -1,5 +1,12 @@
 # Corvid Audio Suite Changelog
 
+## v1.3.0 -2026-04-09
+
+**All plugins**
+- Shift+drag fine-tune on all knobs and sliders (1/10 sensitivity); hold Shift while dragging for precise adjustments
+
+---
+
 ## v1.2.1 -2026-04-08
 
 **Broken v0.3.0**

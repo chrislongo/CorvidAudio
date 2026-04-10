@@ -76,6 +76,41 @@ public:
 };
 
 //==============================================================================
+// Rotary/linear slider with Shift-key fine-tune (1/10 drag sensitivity).
+// Drop-in replacement for juce::Slider. Accumulates a virtual position so
+// toggling Shift mid-drag produces no jump.
+class Slider : public juce::Slider
+{
+public:
+    using juce::Slider::Slider;
+
+    void mouseDown (const juce::MouseEvent& e) override
+    {
+        virtualPos  = e.position;
+        lastRealPos = e.position;
+        juce::Slider::mouseDown (e);
+    }
+
+    void mouseDrag (const juce::MouseEvent& e) override
+    {
+        constexpr float kFineScale = 0.1f;
+        const float scale = e.mods.isShiftDown() ? kFineScale : 1.0f;
+
+        const auto delta = e.position - lastRealPos;
+        lastRealPos  = e.position;
+        virtualPos  += delta * scale;
+
+        juce::Slider::mouseDrag (e.withNewPosition (virtualPos));
+    }
+
+private:
+    juce::Point<float> virtualPos;
+    juce::Point<float> lastRealPos;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Slider)
+};
+
+//==============================================================================
 // Pill-shaped toggle button bound to an APVTS bool parameter.
 // Used by Life (Wide toggle). Reusable for any on/off pill.
 class PillToggle : public juce::Component

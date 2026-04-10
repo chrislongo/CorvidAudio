@@ -1,5 +1,8 @@
 # Broken Changelog
 
+### v0.4.0 -2026-04-09
+- Shift+drag fine-tune on all knobs (1/10 sensitivity)
+
 ### v0.3.0 -2026-04-08
 - Add Mix knob (dry/wet blend, default 100% wet)
 - Panel width increased to 430px to accommodate fourth knob

@@ -1,5 +1,8 @@
 # 2-OP Changelog
 
+### v1.2.0 -2026-04-09
+- Shift+drag fine-tune on all sliders and knobs (1/10 sensitivity); replaces previous 2.5x divisor implementation
+
 ### v1.1 -2026-03-14
 - Add VST3 format target
 

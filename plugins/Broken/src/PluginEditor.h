@@ -16,7 +16,7 @@ public:
 private:
     corvid::BlackKnobLookAndFeel knobLAF;
 
-    juce::Slider driveKnob, starveKnob, mixKnob, outputKnob;
+    corvid::Slider driveKnob, starveKnob, mixKnob, outputKnob;
     juce::Label  driveLabel, starveLabel, mixLabel, outputLabel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> driveAttachment,

@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include <CorvidLookAndFeel.h>
 
 //==============================================================================
 // FMSliderLookAndFeel
@@ -50,26 +51,11 @@ public:
 };
 
 //==============================================================================
-// FMSlider — juce::Slider with Shift-key fine-tune (1/10 sensitivity)
-class FMSlider : public juce::Slider
+// FMSlider — corvid::Slider (inherits Shift-key fine-tune) with FM slider style
+class FMSlider : public corvid::Slider
 {
 public:
-    using juce::Slider::Slider;
-
-    void mouseDrag (const juce::MouseEvent& e) override
-    {
-        if (e.mods.isShiftDown())
-        {
-            constexpr float kFineDivisor = 2.5f;
-            const auto finePt = e.mouseDownPosition
-                                + (e.position - e.mouseDownPosition) / kFineDivisor;
-            juce::Slider::mouseDrag (e.withNewPosition (finePt));
-        }
-        else
-        {
-            juce::Slider::mouseDrag (e);
-        }
-    }
+    using corvid::Slider::Slider;
 };
 
 //==============================================================================

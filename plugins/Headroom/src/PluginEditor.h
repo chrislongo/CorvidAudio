@@ -19,7 +19,7 @@ private:
     HeadroomAudioProcessor& processor;
 
     corvid::BlackKnobLookAndFeel knobLAF;
-    juce::Slider thresholdKnob;
+    corvid::Slider thresholdKnob;
     juce::Label  thresholdLabel;
 
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> thresholdAttachment;
