@@ -24,7 +24,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "${REPO_ROOT}"
 
 # ---- Suite version ----
-SUITE_VERSION="1.3.0"
+SUITE_VERSION="1.3.1"
 
 # ---- Signing identity ----
 SIGN_ID="Developer ID Application"
@@ -45,7 +45,7 @@ declare -A PLUGIN_DESC
 
 PLUGIN_TARGET[2-OP]="TwoOpFM"
 PLUGIN_ARTEFACT[2-OP]="TwoOpFM"
-PLUGIN_VERSION[2-OP]="1.2.0"
+PLUGIN_VERSION[2-OP]="1.3.0"
 PLUGIN_DESC[2-OP]="2-operator FM synthesizer"
 
 PLUGIN_TARGET[Broken]="Broken"

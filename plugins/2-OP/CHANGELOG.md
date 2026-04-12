@@ -1,5 +1,8 @@
 # 2-OP Changelog
 
+### v1.3.0 -2026-04-11
+- Scale UI 1.2x: panel 545x455 → 654x546, labels 10pt → 12pt, knobs and sliders proportionally larger
+
 ### v1.2.0 -2026-04-09
 - Shift+drag fine-tune on all sliders and knobs (1/10 sensitivity); replaces previous 2.5x divisor implementation
 

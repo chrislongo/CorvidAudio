@@ -1,5 +1,12 @@
 # Corvid Audio Suite Changelog
 
+## v1.3.1 -2026-04-11
+
+**2-OP v1.3.0**
+- Scale UI 1.2x: panel 545x455 → 654x546, labels 10pt → 12pt, knobs and sliders proportionally larger
+
+---
+
 ## v1.3.0 -2026-04-09
 
 **All plugins**

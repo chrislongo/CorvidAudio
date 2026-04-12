@@ -21,7 +21,7 @@ public:
                            juce::Slider::SliderStyle,
                            juce::Slider&) override;
 
-    int getSliderThumbRadius (juce::Slider&) override { return 6; }  // kThumbH / 2
+    int getSliderThumbRadius (juce::Slider&) override { return 8; }  // kThumbH / 2
 };
 
 //==============================================================================
