@@ -27,13 +27,13 @@ TwoOpFMAudioProcessor::createParameterLayout()
 
     // FM parameters
     layout.add (std::make_unique<APF> ("ratio",    "Ratio",    0.0f, 1.0f,  0.5f));
-    layout.add (std::make_unique<APF> ("index",    "Index",    0.0f, 1.0f,  0.3f));
+    layout.add (std::make_unique<APF> ("index",    "Depth",    0.0f, 1.0f,  0.3f));
     layout.add (std::make_unique<APF> ("feedback", "Feedback", 0.0f, 1.0f,  0.5f));
     layout.add (std::make_unique<APF> ("sub",      "Sub",      0.0f, 1.0f,  0.0f));
 
     // LPG parameters
     using Range = juce::NormalisableRange<float>;
-    layout.add (std::make_unique<APF> ("attack",  "Attack",  Range (0.005f, 2.0f, 0.0f, 0.3f), 0.010f));
+    layout.add (std::make_unique<APF> ("attack",  "Attack",  Range (0.005f, 2.0f, 0.0f, 0.3f), 0.005f));
     layout.add (std::make_unique<APF> ("decay",   "Decay",   0.0f, 1.0f, 0.5f));
     layout.add (std::make_unique<APF> ("color",  "Color",  0.0f, 1.0f, 0.0f));
     layout.add (std::make_unique<juce::AudioParameterBool> ("ping", "Ping Mode", false));

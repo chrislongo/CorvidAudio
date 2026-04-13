@@ -17,7 +17,7 @@ A monophonic **2-operator FM synthesizer**. The DSP engine is the `FMEngine` fro
 | Parameter | Description |
 |-----------|-------------|
 | **Ratio** | Modulator-to-carrier frequency ratio |
-| **Index** | Modulation depth |
+| **Depth** | Modulation depth |
 | **Feedback** | Operator self-feedback |
 | **Sub** | Sub-octave carrier blend |
 | **Attack** | LPG gate open time (Gate mode only) |

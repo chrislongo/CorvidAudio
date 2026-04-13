@@ -15,7 +15,7 @@ The DSP engine is the `FMEngine` from [Mutable Instruments Plaits](https://githu
 | Parameter | Description |
 |-----------|-------------|
 | Ratio | Modulator-to-carrier frequency ratio |
-| Index | Modulation depth |
+| Depth | Modulation depth |
 | Feedback | Operator self-feedback |
 | Sub | Blend of sub-octave carrier output |
 

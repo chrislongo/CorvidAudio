@@ -205,7 +205,7 @@ TwoOpFMAudioProcessorEditor::TwoOpFMAudioProcessorEditor (TwoOpFMAudioProcessor&
     setSize (654, 546);
 
     setupSlider (ratioSlider_,    ratioLabel_,    "Ratio");
-    setupSlider (indexSlider_,    indexLabel_,    "Index");
+    setupSlider (indexSlider_,    indexLabel_,    "Depth");
     setupSlider (feedbackSlider_, feedbackLabel_, "Feedback");
     setupSlider (subSlider_,      subLabel_,      "Sub");
 
