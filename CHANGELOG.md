@@ -1,5 +1,13 @@
 # Corvid Audio Suite Changelog
 
+## v1.3.2 -2026-04-13
+
+**2-OP v1.3.1**
+- Rename Index → Depth
+- Default Attack to 0
+
+---
+
 ## v1.3.1 -2026-04-11
 
 **2-OP v1.3.0**

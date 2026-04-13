@@ -1,5 +1,9 @@
 # 2-OP Changelog
 
+### v1.3.1 -2026-04-13
+- Rename Index → Depth
+- Default Attack to 0
+
 ### v1.3.0 -2026-04-11
 - Scale UI 1.2x: panel 545x455 → 654x546, labels 10pt → 12pt, knobs and sliders proportionally larger
 
