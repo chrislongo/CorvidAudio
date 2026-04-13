@@ -10,7 +10,7 @@ Audio plugins for music production. AU, VST3, and Standalone on macOS.
 
 ### 2-OP
 
-<img src="plugins/2-OP/docs/2-op.png" width="400" alt="2-OP"/>
+<img src="plugins/2-OP/docs/2-Op.png" width="400" alt="2-OP"/>
 
 A monophonic **2-operator FM synthesizer**. The DSP engine is the `FMEngine` from [Mutable Instruments Plaits](https://github.com/pichenettes/eurorack), adapted for standard sample rates. The amplitude/filter stage is a Plaits-style LPG (low-pass gate): a vactrol simulation feeding a combined SVF lowpass + VCA, giving the characteristic bloom and soft roll-off of a Buchla-style circuit.
 

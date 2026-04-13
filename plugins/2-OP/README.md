@@ -2,7 +2,7 @@
 
 # 2-OP
 
-![2-OP](docs/2-op.png)
+![2-OP](docs/2-Op.png)
 
 A monophonic 2-operator FM synthesizer AU/VST3 plugin, built with [JUCE](https://juce.com).
 
